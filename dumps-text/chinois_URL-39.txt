@@ -1,0 +1,58 @@
+   OMGChinese OMG! 中文 (BUTTON)
+     * Video
+     * HSK
+       New HSK 3.0 (2021)
+       HSK 3.0 Band 1 HSK 3.0 Band 2 HSK 3.0 Band 3 HSK 3.0 Band 4 HSK 3.0
+       Band 5 HSK 3.0 Band 6 HSK 3.0 Band 7,8,9
+       HSK 2.0 (2012)
+       HSK 1 HSK 2 HSK 3 HSK 4 HSK 5 HSK 6
+     * Vocabulary
+     * Tools
+       Chinese Pinyin Chart Chinese To Pinyin Converter Simplified &
+       Traditional Converter Write English names in Chinese RMB number to
+       text
+       Chinese Name Gender Guesser
+     * Dictionary
+
+     *
+
+   [INS: :INS]
+   汉英词典
+   Chinese-English Dictionary
+   背井离乡________________ (BUTTON) (BUTTON) Search
+   (*) All
+   ( ) 汉+Pinyin
+   ( ) 汉+Eng
+   MEANING OF 背井离乡
+   背井离乡 (背井離鄉)
+   (BUTTON) How to write
+   Definition to leave one's native place, esp. against one's will (idiom)
+   Idiom Leaving home to another place
+   Usage
+   Synonyms 远离 离家 离京 不辞而别 离乡 离乡背井
+   Antonym 安土重迁
+   中文释义 离开了故乡，在外地生活（多指不得已的）。也说离乡背井。
+   Characters 背 bèi/bēi 井 jǐng 离 (離) lí 乡 (鄉) xiāng
+                         EXAMPLE SENTENCES
+   (BUTTON) (BUTTON)
+
+   {{ item.english }}
+   (BUTTON) {{ rowGroups['sentence'] ? ' hide ('+syData.length+' /
+   '+syData.length+')' : ' more (5 / '+syData.length+')' }}
+
+   Sorry, couldn't find anything matching sentences
+
+Subtitled Videos
+
+   [INS: :INS]
+
+   OMGChinese is a Chinese language learning platform.
+   About · Privacy Policy · Terms of Use
+   © 2020 OMGChinese.com 疯狂中文
+
+Hi, 亲
+
+   (BUTTON) ×
+
+   This feature is under development ᕙ(`▿´)ᕗ
+   (BUTTON) Close
