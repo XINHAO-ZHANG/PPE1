@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "../Yidi PPE"
+		},
+		{
+			"path": "../../praat_script"
 		}
 	],
 	"settings": {}
