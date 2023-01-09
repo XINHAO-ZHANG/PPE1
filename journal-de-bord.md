@@ -24,6 +24,7 @@ grep: permet de rechercher le contenu dont nous avons rempli dans l'argument dan
 head tail: première partie et dernière partie du fichier texte
 
 #Séance2 28.9.2022 GITHUB
+huwefk
 
 
 
