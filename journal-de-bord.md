@@ -4,12 +4,13 @@
 Quelques notions a retenir:
 
 chemin absolu :Un chemin absolu identifie une ressource en commençant à la racine de l’arborescence, avec le caractère /. Un chemin absolu ne dépend pas du répertoire courant et est donc valide partout.
+
 chemin relatif :Un chemin relatif identifie une ressource à partir du répertoire courant. Il dépend donc du répertoire courant et n’est pas valide partout.
 
 Quelques commandes de base:
 
 pwd : permetttre de récupérer le chemin absolu du répertoire courant
-cd: se déplacer dans un répertoire
+cd: se déplacer dans un répertoire	
 cd .. : remonte d'un cran dans la hiérarchie des rép
 ls : lister le contenu du dossier
 cat: affichier le contenu du fichier
