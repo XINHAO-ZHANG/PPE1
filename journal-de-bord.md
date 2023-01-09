@@ -1,4 +1,4 @@
-#Journal de bord du projet encadré
+#Journal de bord du projet encadré   
 #Séance1 21.9.2022 UNIX
 
 Quelques notions a retenir:
@@ -19,6 +19,8 @@ man (commande): affichier la description du commande en question dans un manuel
 rm : supprimer tous les fichier du répertoire   
 rmdir:supprimer le répertoire   
 head tail: première partie et dernière partie du fichier texte      
+
+
 
 #Séance2 28.9.2022 GITHUB   
 
