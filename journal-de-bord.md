@@ -51,6 +51,30 @@ grep: permet de rechercher le contenu dont nous avons rempli dans l'argument dan
 
 sort et uniq est normalement un ensemble des commandes pour acquérir un texte sans doublons et bien trié.
 
+### ALLER PLUS LOINS AU GIT TAG
+git tag : créer un nouveau tag   
+git push origin tagname: push dans le dépôt   
+git tag -a tagname -m `tagmessage` : ajouter le commit message en même temps   
+git tag -d : supprimer le tag   
+
+Pour récupérer l'identifiant SHA du commit:
+Je devrai installer Tree sur mon terminal afin d'obtenir le chemin du tag. On va donc utiliser la commande cat pour y arriver.
+
+<pre>└── <font color="#12488B"><b>refs</b></font>
+    ├── <font color="#12488B"><b>heads</b></font>
+    │   └── main
+    ├── <font color="#12488B"><b>remotes</b></font>
+    │   └── <font color="#12488B"><b>origin</b></font>
+    │       ├── HEAD
+    │       └── main
+    └── <font color="#12488B"><b>tags</b></font>
+        └── 20220928
+
+272 directories, 2743 files
+<font color="#26A269"><b>zhang@zhang-KPR-WX9</b></font>:<font color="#12488B"><b>~/文档/projetencadre/PPE1</b></font>$ cat .git/refs/tags/20220928
+0a785381a0ad04b7ad517d3f424fdce0a24be2d0
+</pre>
+
 
 
 
