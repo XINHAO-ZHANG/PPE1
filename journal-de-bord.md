@@ -141,4 +141,29 @@ Enfin on ajoute les options display_charset et assume_charset, qui, respectiveme
 
     lynx -dump -nolist -assume_charset=encodage -display_charset=encodagesortie url > nom_fichier.txt   
 
-## Séance5 19.10.2022 INSTRUCTION DE CONTRÔLE(SHELL) ET HTML 
+## Séance6 26.10.2022 TRAITEMENT URLS
+
+Après avoir bien rassemblé tous les URLs chinois, on se met a les traiter et a établir le tableau.   
+J'ai essayé de récupérer quelques informations intéressantes sur le tableau que l'on veut en vue de me familliariser le grammaire HTML, puisque le tableau se génère généralement au format HTML.
+Donc, j'ai commencé simplement:
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>TABLEAU SIMPLE</title>
+</head> <!--configuration de l'entête-->
+
+<body><!--début du corps de la page-->
+	<table border="10px" bordercolor = "#FF0000"><!--configuration de table-->
+		<tr><td>numero de ligne</td><td>URL</td></tr><!--creation d<une table avec seulement deux colonnes-->
+	</table>
+</body>
+
+</html>
+
+Une fois la table crée, voyons comment utiliser un boucle pour lire automatiquement un texte ligne par ligne et numéroter ces lignes.  
+
+
+## Séance7 9.11.2022 URLS
+
+Pendant ce cours, on a essayé de tout 
