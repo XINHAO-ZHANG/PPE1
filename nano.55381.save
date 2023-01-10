@@ -1,0 +1,25 @@
+#! /usr/bin/bashi# !/ usr / bin / bash
+if [ $ # - ne 1 ]
+then
+	echo " ce programme demande un argument "
+		exit
+fi
+FICHIER_URLS = $1
+OK =0
+NOK =0
+while read -r LINE ;
+do
+	echo " la ligne : $LINE "
+	if [[ $LINE =∼ " ^ https ?:// " ]]
+	then
+		echo " ressemble à une URL valide "
+		OK = $ ( expr $OK + 1)
+	else
+		echo " ne ressemble pas à une URL valide "
+		NOK = $ ( expr $NOK + 1)
+	fi
+done < $FICHIER_URLS
+echo " $OK URLs et $NOK lignes douteuses "
+cd '/home/zhang/文档/projetencadre/PPE1/Fichiers' 
+echo "Pour l'annee 2016:" > sortie.txt
+grep "Location" 2016*.ann | wc -l >> sortie.txt

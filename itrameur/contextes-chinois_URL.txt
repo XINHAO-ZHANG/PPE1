@@ -20,11 +20,6 @@
    最后编辑于2021年12月5日 (星期日) 07:52
 </text>
 </page> §
-<page="chinois_URL-11">
-<text>
-
-</text>
-</page> §
 <page="chinois_URL-12">
 <text>
 
@@ -80,11 +75,6 @@
    女儿看到父母极为拮据，迷惑地问“我们贫穷吗”，这是因为在德国时一家人过着富裕的生活，背井离乡后，儿女的认知还没转换过来。
 
    结尾，儿女二人已经逐步适应了这种颠沛流离的生活，在去往英国伦敦的轮船上，对未知的未来表现出了前所未有的乐观精神，因为——家人在一起就是家，儿女
-</text>
-</page> §
-<page="chinois_URL-14">
-<text>
-
 </text>
 </page> §
 <page="chinois_URL-15">
@@ -165,16 +155,6 @@
        背井离乡
      * 【拼音】
        bèi jǐng lí xiāng
-</text>
-</page> §
-<page="chinois_URL-18">
-<text>
-
-</text>
-</page> §
-<page="chinois_URL-19">
-<text>
-
 </text>
 </page> §
 <page="chinois_URL-1">
@@ -812,11 +792,6 @@ abcd式的词语
    Thousands of people have been displaced by the war.
 </text>
 </page> §
-<page="chinois_URL-2">
-<text>
-
-</text>
-</page> §
 <page="chinois_URL-30">
 <text>
    ____________________
@@ -998,11 +973,6 @@ Sample Sentences
    背井离乡，到底为了什么？
 
    为了所谓的机遇？为了更大的舞台？为了更好的条件？
-</text>
-</page> §
-<page="chinois_URL-35">
-<text>
-
 </text>
 </page> §
 <page="chinois_URL-36">
@@ -1549,11 +1519,6 @@ Sample Sentences
    上一篇：《荀子》背弃之人下一句是什么
 </text>
 </page> §
-<page="chinois_URL-46">
-<text>
-
-</text>
-</page> §
 <page="chinois_URL-47">
 <text>
    ——身在异国他乡的创作者借我们的专栏吐露心声
@@ -1704,11 +1669,6 @@ Sample Sentences
 
    而主人背井离乡，难以取舍的除了亲友、从小到大的物品，还有日日相伴的宠物。宠物是香港人生活中不可忽视的一部分，据香港政府的统计，2018年时全港
    已经有241900住户有饲养狗只／猫只，占全港所有住户的 9.4%，也就是说，几乎每10户人家，就有一户饲养宠物。
-</text>
-</page> §
-<page="chinois_URL-4">
-<text>
-
 </text>
 </page> §
 <page="chinois_URL-50">
@@ -1908,11 +1868,6 @@ Sample Sentences
    但实际远远不止，据统计，已经有1000万乌克兰人背井离乡。 出处:《战争已整整一个月了，世界有10个没想到！》
    顺序相关：第一个字是背的成语 第二个字是井的成语 第三个字是离的成语 第四个字是乡的成语
    您可以扫描 二维码 用手机来阅读或分享本页面。
-</text>
-</page> §
-<page="chinois_URL-8">
-<text>
-
 </text>
 </page> §
 <page="chinois_URL-9">
