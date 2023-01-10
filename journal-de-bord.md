@@ -125,5 +125,141 @@ Pour moins d’ambiguïté, les balises sont marquées explicitement. il y en a 
 • Fermantes : </balise> → la fin d’une zone  
 • Ouvrantes et fermantes à la fois : <balise/> → "ancre"  
 
+### La Commande cURL
+Nous traitons donc le premier fichier contenu dans le dossier URLs et dans ce fichier nous traitons la première url, nous devons récupérer le contenu du site, pour cela nous utilisons la commande wget. C'est en fait un programme qui peut s'utiliser en ligne de commande justement pour télécharger du contenu depuis le web. La syntaxe est la suivante :
+
+    curl [option] [url]
+
+La commande curl possède de nombreuses options. Il y en a une qui nous intéresse particulièrement : -i pour entrer en plus détail.
+
+### Lynx : formatage en texte brut
+Cela étant fait, nous voulons transformer ce fichier html en texte brut pour pouvoir le traiter par la suite. Pour cela nous faisons appel à un navigateur qui s'utilise en ligne de commande : lynx. Avec certaines options, il permet d'extraire le contenu de la page web. Cette première option s'appelle dump, on ajoute à celle-ci une option -nolist qui va supprimer tous les liens contenus dans la page, c'est une première étape de nettoyage du fichier obtenu. En effet, l'ensemble des liens n'est pas pertinent dans l'analyse qui va suivre. On obtient donc la ligne de commande suivante :
+
+    lynx -dump -nolist url
+
+Enfin on ajoute les options display_charset et assume_charset, qui, respectivement, forcent l'encodage de départ des pages qui n'en spécifient aucun et encode le fichier d'arrivée. Pour définir le fameux fichier d'arrivée, on ajoute la redirection de flux vers le nom du fichier cette fois-ci au format txt :
+
+    lynx -dump -nolist -assume_charset=encodage -display_charset=encodagesortie url > nom_fichier.txt   
+
+## Séance6 26.10.2022 TRAITEMENT URLS
+
+Après avoir bien rassemblé tous les URLs chinois, on se met a les traiter et a établir le tableau.   
+J'ai essayé de récupérer quelques informations intéressantes sur le tableau que l'on veut en vue de me familliariser le grammaire HTML, puisque le tableau se génère généralement au format HTML.
+Donc, j'ai commencé simplement:
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>TABLEAU SIMPLE</title>
+</head> <!--configuration de l'entête-->
+
+<body><!--début du corps de la page-->
+	<table border="10px" bordercolor = "#FF0000"><!--configuration de table-->
+		<tr><td>numero de ligne</td><td>URL</td></tr><!--creation d<une table avec seulement deux colonnes-->
+	</table>
+</body>
+
+</html>
+
+Une fois la table crée, voyons comment utiliser un boucle pour lire automatiquement un texte ligne par ligne et numéroter ces lignes.  
+
+### Vérifier si URL qu'on trouve est bon, il y a deux méthodes :
+
+1 : vérifier si le début de la ligne commence par http(s):
+<pre>#! /usr/bin/bash
+if [ $ # - ne 1 ]
+then
+        echo &quot; ce programme demande un argument &quot;
+                exit
+fi
+FICHIER_URLS = $1
+OK =0
+NOK =0
+while read -r LINE ;
+do
+        echo &quot; la ligne : $LINE &quot;
+        if [[ $LINE =∼ &quot; ^ https ?:// &quot; ]]
+        then
+                echo &quot; ressemble à une URL valide &quot;
+                OK = $ ( expr $OK + 1)
+        else
+                echo &quot; ne ressemble pas à une URL valide &quot;
+                NOK = $ ( expr $NOK + 1)
+        fi
+done &lt; $FICHIER_URLS
+echo &quot; $OK URLs et $NOK lignes douteuses &quot;
+</pre>
+
+
+2: de manière plus minutieuse à l'aide de la commande -curl, qui sert à entrer dans la page html du lien et à récupérer des informations du html
+
+<pre>FICHIER=$1
+URLS=$(cat  $FICHIER)
+
+for URL in $URLS
+do 
+        LINE=$(curl -I $URL)
+        if [[  $LINE =~ &quot;HTTP&quot;  ]]
+        then
+                echo &quot;URL&quot;
+        else
+                echo &quot;Non URL&quot;
+        fi
+done
+</pre>
+
+
+## Séance7.8.9.10 URLS ET TABLEAUX
+
+### des contextes
+
+Une fois que l'on connaîtt que lynx permet de récupérer le texte brut du contenu de la page, nous allons chercher dans le site les contextes dans lesquels sont utilisés notre mot, "réfugiés". Pour cela, on utilise une expression régulière avec la commande egrep (quelques explications ici) à laquelle on ajoute différentes options.
+
+La première option est -i qui permet d'ignorer la casse, ainsi on pourra trouver aussi bien "réfugiés" que "Réfugiés" que "RéFugIs" si besoin est. Ensuite on ajoute l'option -o, seuls les matchs trouvés sont affichés (et non le fichier entier avec les matchs en surbrillance), un sur chaque ligne.
+
+    egrep -i -o "mot" > fichiercontexte.txt
+
+Pour avoir le nombre d'occurence du mot dans le tableau, on va ajouter l'option -c (count) pour qu'il nous indique combien de fois il a trouvé le mot dans le site en question, on reprend donc la même expression régulière, mais en ajoutant -c. Notez qu'on peut regrouper les options ainsi :
+
+    egrep -ioc "mot" > fichiercontexte.txt
+
+### Généralisation pour url et fichier
+
+La première boucle va nous permettre de parcourir tous les fichiers du dossier. On utilise une boucle for à laquelle on donne une première variable $fichier et ensuite la commande ls pour traiter tous les fichiers contenus dans le dossier $dossierurl dont on a parlé plus haut. La syntaxe est donc la suivante :
+
+    for line in `ls $dossierurl`
+
+La variable $line ne s'affiche pas comme une commande dans le script mais c'est normal, inutile de paniquer comme nous l'avons fait ! Il faudra bien entendu fermer la boucle à la fin du script et indiquer quelle est finie avec le mot done. 
+
+### Réalisation des dumps et contextes 
+
+Pour le traitement final nous avons besoin de fichiers rassemblant tous les dumps, nous allons aussi réaliser un fichier contenant tous les contextes. Ce sont les commandes echo et cat combinées qui vont nous permettre d'inclure le contenu du fichier dump que l'on vient de créer dans un fichier global.
+
+    echo `cat ../DUMP-TEXT/"$tab-$compteur` >> ../FICHIERSGLOBAUX/"dumpglobaux-$tab"
+
+Pour les contextes, on créé d'abord la variable contexte qu'on va ensuite ajouter dans le fichier global. Pour la variable des contextes on utilise de nouveau egrep mais cette fois on utilise l'option -C suivie d'un nombre qui indique le nombre de ligne que l'on veut prendre avant et après l'expression régulière. On pourrait aussi utiliser les options -A et -B qui permettent de choisir le nombre de ligne avant (-B, before) et le nombre de ligne après (-A, after).
+
+    contexte=$(egrep -i -C 4 "$mots[$tab]" ../DUMP-TEXT/"$tab-$compteur")
+
+    echo "$contexte" >> ../FICHIERSGLOBAUX/"contextesglobaux-$tab"
+
+On créé aussi un fichier pour chaque contexte, c'est exactement comme pour la création des fichiers dumps :
+
+    echo "$contexte" >> ../CONTEXTES/"$tab-$compteur"   
+    
+### Problèmes d'encodage
+
+Puisque le texte en chinois est gravement susceptible d'être encodé par l'encodage GKB, avec l'encodage défini dans la variable $encodage ou $charset , on utilise donc cette variable dans iconv. Les options -f (from) et -t (to) vont donner les encodages de départ et d'arrivée du fichier.
+
+    iconv -f $encodage/$charset -t UTF8 ../DUMP-TEXT/$tab-$compteur.txt > ../DUMP-TEXT/"$tab-$compteur.txt"
+    
+### Segementation du texte chinois 
+
+Comme il n’y a pas d’espace entre les caractères chinois, il est difficile de isoler les mots et de les compter et de les trier. Nous devons donc faire appel a un outil qui permet de segmenter les caractères chinois. 
+
+L’objectif est de passer du texte à un compte rendu des mots compté et trié. L’outil Thulac permet de faire la tokennisation sur un texte chinois, c’est à dire de séparer un mot qui fait sens d’un autre avec un espace sur Python.
+
+la commande devrait ressembler à ceci:
+![Alt text]
 
 
