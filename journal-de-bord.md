@@ -77,14 +77,53 @@ sort et uniq est normalement un ensemble des commandes pour acquérir un texte s
 \>\> :  rediriger la sortie d'une commande vers un fichier en ajoutant a la fin  
 |: pipe permet de connecter plusieurs commandes
 
+### Création du premier script(sur l'éditeur VIM):
+• ajouter des commentaires #   
+• ajouter un shebang #!/usr/bin/bash    
+• rendre le fichier exécutable (avec chmod +x)   
+
+### Usage de l'éditeur VIM:
+• i pour insérer le contenu ou rendre le fichier éditable   
+• quand on a fini le travail, on tape Esc pour sortir du modèle édit.   
+• alors, shift + : wq pour on va tout écrire et quitter l'éditeur.  
 
 
+<pre><font color="#2AA1B3">#! /usr/bin/bash</font>
+cd &apos;/home/zhang/文档/projetencadre/PPE1/Fichiers&apos;
+echo &quot;Pour l&apos;annee 2016:&quot; &gt; sortie.txt
+grep &quot;Location&quot; 2016*.ann | wc -l &gt;&gt; sortie.txt 
+
+</pre>
 
 
+## Séance4 12.10.2022 ARGUMENTS DU BASH SCRIPTS
 
+### Quelques commandes en plus:
+wc -l : nous permet de compter les lignes des fichiers    
+echo : pour écrire une chaîne de caractère en sortie    
+file : pour voir l'encodage du fichier    
+hexdump : pour voir les codes héxadécimaux du fichier encodé en codes binaires   
 
+Dans le scipt BASH, on ajoute $ a l'avance pour désigner la nature de variable.  
 
+<pre>#! /usr/bin/bash
+cd &apos;/home/zhang/文档/projetencadre/PPE1/Fichiers&apos;                         
+ANNEE=$1
+TYPE=$2
 
+echo &quot;Pour l&apos;annee $ANNEE&quot; &gt; sortie1.txt
+grep &quot;$TYPE&quot; $ANNEE*.ann | wc -l &gt;&gt; sortie1.txt
+<font color="#2A7BDE">                                                   </font></pre>
+
+## Séance5 19.10.2022 INSTRUCTION DE CONTRÔLE(SHELL) ET HTML 
+Lors de cette séance, on a appris que l'on peut touot simplement créer un website par l'intermédiaire d'un répertoire nouvellement établieGITPAGE.   
+
+Également, le grammaire HTML a été présenté. Html est un langage de balisage qui sert à indiquer au navigateur comment structurer les pages web visitées. Les contenus sont toujours entourés par une balise ouvrante et fermante qui contiennent des éléments. Chaque élément peut avoir des attributs caractérisant ces éléments. Les détails peuvent faire référence a deux lien utiles:https://developer.mozilla.org/fr/docs/Web/HTML/Element; https://www.runoob.com/html/html-tutorial.html   
+
+Pour moins d’ambiguïté, les balises sont marquées explicitement. il y en a 3 types :  
+• Ouvrantes : <balise> → le début d’une zone  
+• Fermantes : </balise> → la fin d’une zone  
+• Ouvrantes et fermantes à la fois : <balise/> → "ancre"  
 
 
 
