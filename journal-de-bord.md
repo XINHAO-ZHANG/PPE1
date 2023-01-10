@@ -260,6 +260,8 @@ Comme il n’y a pas d’espace entre les caractères chinois, il est difficile 
 L’objectif est de passer du texte à un compte rendu des mots compté et trié. L’outil Thulac permet de faire la tokennisation sur un texte chinois, c’est à dire de séparer un mot qui fait sens d’un autre avec un espace sur Python.
 
 la commande devrait ressembler à ceci:
-![Alt text] PPE1/thulac.png 
+![Alt text](https://raw.githubusercontent.com/XINHAO-ZHANG/PPE1/main/thulac.png)
 
+Même si le prof nous a enseigné l'usage de base de cet outil, il nous reste quelques paramètre a ajuster:
 
+Mieux vaut que l'on ajoute encoding = utf-8 quand le programme est lancé pour ouvrir le fichier que l'on input dans le programme de source. Or, cela donnerait l'erreur de l'encodage
