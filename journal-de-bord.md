@@ -163,7 +163,102 @@ Donc, j'ai commencé simplement:
 
 Une fois la table crée, voyons comment utiliser un boucle pour lire automatiquement un texte ligne par ligne et numéroter ces lignes.  
 
+### Vérifier si URL qu'on trouve est bon, il y a deux méthodes :
 
-## Séance7 9.11.2022 URLS
+1 : vérifier si le début de la ligne commence par http(s):
+<pre>#! /usr/bin/bash
+if [ $ # - ne 1 ]
+then
+        echo &quot; ce programme demande un argument &quot;
+                exit
+fi
+FICHIER_URLS = $1
+OK =0
+NOK =0
+while read -r LINE ;
+do
+        echo &quot; la ligne : $LINE &quot;
+        if [[ $LINE =∼ &quot; ^ https ?:// &quot; ]]
+        then
+                echo &quot; ressemble à une URL valide &quot;
+                OK = $ ( expr $OK + 1)
+        else
+                echo &quot; ne ressemble pas à une URL valide &quot;
+                NOK = $ ( expr $NOK + 1)
+        fi
+done &lt; $FICHIER_URLS
+echo &quot; $OK URLs et $NOK lignes douteuses &quot;
+</pre>
 
-Pendant ce cours, on a essayé de tout 
+
+2: de manière plus minutieuse à l'aide de la commande -curl, qui sert à entrer dans la page html du lien et à récupérer des informations du html
+
+<pre>FICHIER=$1
+URLS=$(cat  $FICHIER)
+
+for URL in $URLS
+do 
+        LINE=$(curl -I $URL)
+        if [[  $LINE =~ &quot;HTTP&quot;  ]]
+        then
+                echo &quot;URL&quot;
+        else
+                echo &quot;Non URL&quot;
+        fi
+done
+</pre>
+
+
+## Séance7.8.9.10 URLS ET TABLEAUX
+
+### des contextes
+
+Une fois que l'on connaîtt que lynx permet de récupérer le texte brut du contenu de la page, nous allons chercher dans le site les contextes dans lesquels sont utilisés notre mot, "réfugiés". Pour cela, on utilise une expression régulière avec la commande egrep (quelques explications ici) à laquelle on ajoute différentes options.
+
+La première option est -i qui permet d'ignorer la casse, ainsi on pourra trouver aussi bien "réfugiés" que "Réfugiés" que "RéFugIs" si besoin est. Ensuite on ajoute l'option -o, seuls les matchs trouvés sont affichés (et non le fichier entier avec les matchs en surbrillance), un sur chaque ligne.
+
+    egrep -i -o "mot" > fichiercontexte.txt
+
+Pour avoir le nombre d'occurence du mot dans le tableau, on va ajouter l'option -c (count) pour qu'il nous indique combien de fois il a trouvé le mot dans le site en question, on reprend donc la même expression régulière, mais en ajoutant -c. Notez qu'on peut regrouper les options ainsi :
+
+    egrep -ioc "mot" > fichiercontexte.txt
+
+### Généralisation pour url et fichier
+
+La première boucle va nous permettre de parcourir tous les fichiers du dossier. On utilise une boucle for à laquelle on donne une première variable $fichier et ensuite la commande ls pour traiter tous les fichiers contenus dans le dossier $dossierurl dont on a parlé plus haut. La syntaxe est donc la suivante :
+
+    for line in `ls $dossierurl`
+
+La variable $line ne s'affiche pas comme une commande dans le script mais c'est normal, inutile de paniquer comme nous l'avons fait ! Il faudra bien entendu fermer la boucle à la fin du script et indiquer quelle est finie avec le mot done. 
+
+### Réalisation des dumps et contextes 
+
+Pour le traitement final nous avons besoin de fichiers rassemblant tous les dumps, nous allons aussi réaliser un fichier contenant tous les contextes. Ce sont les commandes echo et cat combinées qui vont nous permettre d'inclure le contenu du fichier dump que l'on vient de créer dans un fichier global.
+
+    echo `cat ../DUMP-TEXT/"$tab-$compteur` >> ../FICHIERSGLOBAUX/"dumpglobaux-$tab"
+
+Pour les contextes, on créé d'abord la variable contexte qu'on va ensuite ajouter dans le fichier global. Pour la variable des contextes on utilise de nouveau egrep mais cette fois on utilise l'option -C suivie d'un nombre qui indique le nombre de ligne que l'on veut prendre avant et après l'expression régulière. On pourrait aussi utiliser les options -A et -B qui permettent de choisir le nombre de ligne avant (-B, before) et le nombre de ligne après (-A, after).
+
+    contexte=$(egrep -i -C 4 "$mots[$tab]" ../DUMP-TEXT/"$tab-$compteur")
+
+    echo "$contexte" >> ../FICHIERSGLOBAUX/"contextesglobaux-$tab"
+
+On créé aussi un fichier pour chaque contexte, c'est exactement comme pour la création des fichiers dumps :
+
+    echo "$contexte" >> ../CONTEXTES/"$tab-$compteur"   
+    
+### Problèmes d'encodage
+
+Puisque le texte en chinois est gravement susceptible d'être encodé par l'encodage GKB, avec l'encodage défini dans la variable $encodage ou $charset , on utilise donc cette variable dans iconv. Les options -f (from) et -t (to) vont donner les encodages de départ et d'arrivée du fichier.
+
+    iconv -f $encodage/$charset -t UTF8 ../DUMP-TEXT/$tab-$compteur.txt > ../DUMP-TEXT/"$tab-$compteur.txt"
+    
+### Segementation du texte chinois 
+
+Comme il n’y a pas d’espace entre les caractères chinois, il est difficile de isoler les mots et de les compter et de les trier. Nous devons donc faire appel a un outil qui permet de segmenter les caractères chinois. 
+
+L’objectif est de passer du texte à un compte rendu des mots compté et trié. L’outil Thulac permet de faire la tokennisation sur un texte chinois, c’est à dire de séparer un mot qui fait sens d’un autre avec un espace sur Python.
+
+
+
+
