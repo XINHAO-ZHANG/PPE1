@@ -125,5 +125,20 @@ Pour moins d’ambiguïté, les balises sont marquées explicitement. il y en a 
 • Fermantes : </balise> → la fin d’une zone  
 • Ouvrantes et fermantes à la fois : <balise/> → "ancre"  
 
+### La Commande cURL
+Nous traitons donc le premier fichier contenu dans le dossier URLs et dans ce fichier nous traitons la première url, nous devons récupérer le contenu du site, pour cela nous utilisons la commande wget. C'est en fait un programme qui peut s'utiliser en ligne de commande justement pour télécharger du contenu depuis le web. La syntaxe est la suivante :
 
+    curl [option] [url]
 
+La commande curl possède de nombreuses options. Il y en a une qui nous intéresse particulièrement : -i pour entrer en plus détail.
+
+### Lynx : formatage en texte brut
+Cela étant fait, nous voulons transformer ce fichier html en texte brut pour pouvoir le traiter par la suite. Pour cela nous faisons appel à un navigateur qui s'utilise en ligne de commande : lynx. Avec certaines options, il permet d'extraire le contenu de la page web. Cette première option s'appelle dump, on ajoute à celle-ci une option -nolist qui va supprimer tous les liens contenus dans la page, c'est une première étape de nettoyage du fichier obtenu. En effet, l'ensemble des liens n'est pas pertinent dans l'analyse qui va suivre. On obtient donc la ligne de commande suivante :
+
+    lynx -dump -nolist url
+
+Enfin on ajoute les options display_charset et assume_charset, qui, respectivement, forcent l'encodage de départ des pages qui n'en spécifient aucun et encode le fichier d'arrivée. Pour définir le fameux fichier d'arrivée, on ajoute la redirection de flux vers le nom du fichier cette fois-ci au format txt :
+
+    lynx -dump -nolist -assume_charset=encodage -display_charset=encodagesortie url > nom_fichier.txt   
+
+## Séance5 19.10.2022 INSTRUCTION DE CONTRÔLE(SHELL) ET HTML 
